@@ -4,4 +4,8 @@
      *  Default config for app 
      */
 
-     define("DATABASE_NAME", "todolist_db");
+    define("DATABASE_NAME", "todolist_db");
+
+    define("DATABASE_USERNAME", "todolist_user");
+
+    define("DATABASE_PASSWORD", "password");
