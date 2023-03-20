@@ -16,4 +16,12 @@ class Auth {
         return $this->db;
     }
 
+    function user_signup() {
+
+    }
+
+    function user_login() {
+
+    }
+
 }
