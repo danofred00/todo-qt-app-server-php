@@ -2,9 +2,9 @@
 
 namespace Todolist\Model;
 
-enum State {
-    case Done;
-    case Schedulle;
+enum State: int {
+    case Done = 1;
+    case Schedulle = 2;
 }
 
 class Task {
