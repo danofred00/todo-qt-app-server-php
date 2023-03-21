@@ -22,7 +22,6 @@ Router::get('/', function() {
 Router::get('/task', function(int $id) {
     
     global $tasks;
-
     return json_encode($tasks->get($id));
 });
 

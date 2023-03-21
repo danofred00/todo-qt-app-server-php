@@ -15,3 +15,5 @@
     define("DATABASE_TABLE_TASKS", "tasks");
 
     define("DATABASE_TABLE_CATEGORY", "category");
+
+    define("DEFAULT_TARGET_URL", "/");
