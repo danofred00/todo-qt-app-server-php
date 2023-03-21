@@ -8,18 +8,16 @@ use \Todolist\Model\Category;
 use \Todolist\Model\Task;
 use \Todolist\Model\Connection;
 
-enum AuthResponseType : int {
-    case UserAlreadyExists = 0;
-    case UserLoginFailed = 1;
-    case UserLoginSucced = 2;
-    case UserNotExists = 3;
-    case UserSignUpSucced = 4;
-}
-
 class Auth {
 
     private $db;
     private UserModel $userModel;
+
+    public static $USER_SIGNUP_SUCCED = 0;
+    public static $USER_ALREADY_EXISTS = 1;
+    public static $USER_NOT_EXISTS = 2;
+    public static $USER_LOGIN_SUCCED = 3;
+    public static $USER_LOGIN_FAILED = 4;
 
     function __construct() {
         Connection::connectDB('localhost', 'todolist_db', 'root', '');
@@ -33,24 +31,24 @@ class Auth {
         return $this->db;
     }
 
-    function signup(User $user) : bool {
+    function signup(User $user) : int {
 
         if($this->userModel->insert($user))
-            return AuthResponseType::UserSignUpSucced;
+            return Auth::$USER_SIGNUP_SUCCED;
         else
-            return AuthResponseType::UserAlreadyExists;
+            return Auth::$USER_ALREADY_EXISTS;
     }
 
-    function login(User $user) : AuthResponseType {
+    function login(User $user) : int {
         
         if(!$this->userModel->exists($user->email))
-            return AuthResponseType::UserNotExists;
+            return Auth::$USER_NOT_EXISTS;
 
         $remoteUser = $this->userModel->get_with_email($user->email);
         if(strcmp(md5($user->password), $remoteUser->password) == 0)
-            return AuthResponseType::UserLoginSucced;
+            return Auth::$USER_LOGIN_SUCCED;
         else 
-            return AuthReponseType::UserLoginFailed;
+            return Auth::$USER_LOGIN_FAILED;
     }
 
 }

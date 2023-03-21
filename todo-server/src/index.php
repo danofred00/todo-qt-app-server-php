@@ -9,4 +9,6 @@
     $auth = new Api\Auth();
     $model = new Model\UserModel(Model\Connection::getInstance());
 
-    var_dump($auth->login($model->get(1)));
+    $user = $model->get(1);
+    $user->password = '123';
+    var_dump($auth->login($user));
