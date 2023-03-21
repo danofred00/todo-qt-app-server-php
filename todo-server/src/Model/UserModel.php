@@ -1,12 +1,13 @@
 <?php
 
 namespace Todolist\Model;
+use PDO;
 
 class UserModel {
 
     private $db;
 
-    function __construct($db) {
+    function __construct(PDO $db) {
         $this->db = $db;
     }
 
