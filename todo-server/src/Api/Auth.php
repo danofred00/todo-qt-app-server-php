@@ -5,20 +5,15 @@ namespace Todolist\Api;
 use \Todolist\Model\User;
 use \Todolist\Model\Category;
 use \Todolist\Model\Task;
+use \Todolist\Model\Connection;
 
 class Auth {
 
-    public $db;
+    private $db;
 
-    function __construct($host, $db_name, $db_user, $db_password) {
-        
-        $dsn = 'mysql:dbname='.$db_name.';host='.$host;
-
-        try {
-            $this->db = new \PDO($dsn, $db_user, $db_password);
-        } catch (PDOException $e) {
-            die($e->getMessage());
-        }
+    function __construct() {
+        Connection::connectDB('localhost', 'todolist_db', 'root', '');
+        $this->db = Connection::getInstance();
     }
 
     function get_database_connection() {
