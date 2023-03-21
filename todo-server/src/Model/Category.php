@@ -12,7 +12,7 @@ class Category {
         $this->category = $category;
     }
 
-    function fromMap(array $map) : Category {
+    public static function fromMap(array $map) : Category {
         return new Category(
             $map['id'],
             $map['category']

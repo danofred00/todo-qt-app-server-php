@@ -42,6 +42,26 @@ class TaskModel
         }
     }
 
+    public function user(Task $task) : User | array
+    {
+        if(! $this->exists($task->id))
+            return [];
+        
+        $stmt = $this->db->prepare("SELECT * FROM " . DATABASE_TABLE_USERS ." WHERE id=$task->user_id");
+        $stmt->execute([]);
+        return User::fromMap($stmt->fetch());
+    }
+
+    public function category(Task $task) : Category | array
+    {
+        if(! $this->exists($task->id))
+            return [];
+        
+        $stmt = $this->db->prepare("SELECT * FROM " . DATABASE_TABLE_CATEGORY ." WHERE id=$task->category_id");
+        $stmt->execute([]);
+        return Category::fromMap($stmt->fetch());
+    }
+
     public function put(int $id, $cols)
     {
 

@@ -11,4 +11,5 @@ require_once __DIR__ . '/config/config.php';
 Connection::connectDB('localhost', DATABASE_NAME, 'root', '');
 $model = new TaskModel(Connection::getInstance());
 
-var_dump($model->get(1));
+$task = $model->get(1);
+var_dump($model->category($task));
