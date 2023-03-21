@@ -10,7 +10,7 @@ class UserModel {
         $this->db = $db;
     }
 
-    function exits($email) : bool 
+    function exists($email) : bool 
     {
         $stmt = $this->db->prepare("SELECT * FROM `" . DATABASE_TABLE_USERS . "` WHERE email='$email'");
         $stmt->execute([]);
@@ -30,7 +30,7 @@ class UserModel {
         return [];
     }
 
-    function get_with_email($email) : User
+    function get_with_email($email) : User | array
     {
 
         $stmt = $this->db->prepare("SELECT * FROM `" . DATABASE_TABLE_USERS . "` WHERE email='$email'");

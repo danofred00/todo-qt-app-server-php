@@ -9,4 +9,4 @@
     $auth = new Api\Auth();
     $model = new Model\UserModel(Model\Connection::getInstance());
 
-    var_dump($model->get(2));
+    var_dump($auth->login($model->get(1)));
