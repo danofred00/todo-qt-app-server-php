@@ -9,3 +9,9 @@
     define("DATABASE_USERNAME", "todolist_user");
 
     define("DATABASE_PASSWORD", "password");
+
+    define("DATABASE_TABLE_USERS", "users");
+
+    define("DATABASE_TABLE_TASKS", "tasks");
+
+    define("DATABASE_TABLE_CATEGORY", "category");

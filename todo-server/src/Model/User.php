@@ -9,9 +9,14 @@ class User {
     public string $lastname;
     public string $email;
     public string $password;
-    public string $email_verified_at;
+    public $email_verified_at;
 
-    function __construct($id, $firstname, $lastname, $email, $password, $email_verified_at)
+    public static $fillable = [
+        'id', 'firstname', 'lastname',
+        'email', 'password', 'email_verified_at'
+    ];
+
+    function __construct($id, $firstname, $lastname, $email, $password, $email_verified_at = null)
     {
         $this->id = $id;
         $this->firstname = $firstname;
@@ -42,6 +47,6 @@ class User {
             'password' => $this->password,
             'email_verified_at' => $this->email_verified_at,
         );
-    }
+    } 
 
 }

@@ -6,8 +6,11 @@
         "phpunit/phpunit": "^9.6"
     },
     "autoload": {
+        "classmap": [
+            "src/"
+        ],
         "psr-4": {
-            "Todolist\\Todolist\\": "src/"
+            "Todolist": "src/"
         }
     },
     "authors": [
