@@ -31,7 +31,7 @@ class Router
         );
 
         // push array
-        array_push(Router::$routes, [$_route]);
+        array_push(Router::$routes, $_route);
     }
 
     public static function call($route, $method, array $args = null)
