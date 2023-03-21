@@ -13,3 +13,5 @@ Utils::debug($_GET);
 
 //////////////////
 $target = DEFAULT_TARGET_URL;
+
+Utils::debug(Router::routesName());
