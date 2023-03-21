@@ -41,7 +41,10 @@ class Router
             if(($_route['route'] == $route) && $_route['method'] == $method)
             {
                 $action = $_route['action'];
-                echo $action($args);
+                if(! is_null($args))
+                    echo $action(...$args);
+                else
+                    echo $action();
             }
         }
     }

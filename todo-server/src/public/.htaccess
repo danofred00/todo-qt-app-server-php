@@ -1,0 +1,9 @@
+
+DirectoryIndex index.php
+
+<IfModule mod_rewrite.c>
+
+    RewriteEngine on
+    RewriteRule ^([a-zA-Z]*)/?$  index.php?target=$1&%{QUERY_STRING}
+
+</IfModule>
