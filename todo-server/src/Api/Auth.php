@@ -45,7 +45,7 @@ class Auth {
             return Auth::$USER_NOT_EXISTS;
 
         $remoteUser = $this->userModel->get_with_email($user->email);
-        if(strcmp(md5($user->password), $remoteUser->password) == 0)
+        if(strcmp($user->password, $remoteUser->password) == 0)
             return Auth::$USER_LOGIN_SUCCED;
         else 
             return Auth::$USER_LOGIN_FAILED;

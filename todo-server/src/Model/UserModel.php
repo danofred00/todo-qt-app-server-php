@@ -55,7 +55,7 @@ class UserModel {
         if(!$this->exists($user->email))
         {
             $query = "INSERT INTO " . DATABASE_TABLE_USERS . "(firstname, lastname, email, password)";
-            $query .= " VALUES ('$user->firstname', '$user->lastname', '$user->email', '" . md5($user->password) . "')";
+            $query .= " VALUES ('$user->firstname', '$user->lastname', '$user->email', '$user->password')";
             $this->db->exec($query);
             return true;
         }
