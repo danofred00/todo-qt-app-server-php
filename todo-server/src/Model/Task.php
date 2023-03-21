@@ -2,10 +2,6 @@
 
 namespace Todolist\Model;
 
-enum State: int {
-    case Done = 1;
-    case Schedulle = 2;
-}
 
 class Task {
 
@@ -15,6 +11,14 @@ class Task {
     public $user_id;
     public $category_id;
     public $state;
+
+    public static $STATE_DONE = 1;
+    public static $STATE_SCHEDULLE = 2;
+
+    public static $fillable = [
+        'title', 'description', 'user_id',
+        'category_id', 'state'
+    ];
 
     function __construct($id, $title, $description, $state, $user_id, $category_id) {
         $this->id = $id;

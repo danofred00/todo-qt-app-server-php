@@ -12,7 +12,7 @@ class User {
     public $email_verified_at;
 
     public static $fillable = [
-        'id', 'firstname', 'lastname',
+        'firstname', 'lastname',
         'email', 'password', 'email_verified_at'
     ];
 
