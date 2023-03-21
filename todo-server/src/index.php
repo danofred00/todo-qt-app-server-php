@@ -1,9 +1,14 @@
 <?php
 
-    namespace Todolist;
+namespace Todolist;
 
-    require_once __DIR__ . '/../vendor/autoload.php';
+use Todolist\Model\Connection;
+use Todolist\Model\TaskModel;
 
-    require_once __DIR__ . '/config/config.php';
+require_once __DIR__ . '/../vendor/autoload.php';
+require_once __DIR__ . '/config/config.php';
 
-    
+Connection::connectDB('localhost', DATABASE_NAME, 'root', '');
+$model = new TaskModel(Connection::getInstance());
+
+var_dump($model->get(1));

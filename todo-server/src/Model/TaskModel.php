@@ -18,8 +18,8 @@ class TaskModel
         if(! $this->exists($id))
             return [];
 
-        $stmt = $this->db->prepare("SELECT * FROM {} WHERE id={}");
-        $stmt->execute([DATABASE_TABLE_TASKS, $id]);
+        $stmt = $this->db->prepare("SELECT * FROM " . DATABASE_TABLE_TASKS ." WHERE id=$id");
+        $stmt->execute([]);
         return Task::fromMap($stmt->fetch());
     }
 
@@ -33,7 +33,7 @@ class TaskModel
             $query = "INSERT INTO " . DATABASE_TABLE_TASKS . "(title, description, state, user_id, category_id)";
             $query .= " VALUES ('$task->title', '$task->description', $task->state, $task->user_id, $task->category_id)";
             $this->db->exec($query);
-            
+
             return true;
         } catch (Exception $e)
         {
@@ -67,8 +67,8 @@ class TaskModel
 
     public function exists(int $id) : bool
     {
-        $stmt = $this->db->prepare("SELECT * FROM {} WHERE id=$id");
-        $stmt->execute([DATABASE_TABLE_TASKS]);
+        $stmt = $this->db->prepare("SELECT * FROM " . DATABASE_TABLE_TASKS . " WHERE id=$id");
+        $stmt->execute([]);
 
         if($stmt->rowCount() != 0)
             return true;
