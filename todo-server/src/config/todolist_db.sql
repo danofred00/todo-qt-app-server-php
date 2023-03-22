@@ -20,10 +20,14 @@ SET time_zone = "+00:00";
 --
 -- Base de données : `todolist_db`
 --
+
+DROP DATABASE IF EXISTS `todolist_db`;
+DROP USER IF EXISTS 'todolist_user'@'localhost';
+
 CREATE DATABASE IF NOT EXISTS `todolist_db`;
 USE `todolist_db` ;
 
-CREATE USER `todolist_user`@`localhost` IDENTIFIED BY "password";
+CREATE USER 'todolist_user'@'localhost' IDENTIFIED BY "password";
 GRANT ALL PRIVILEGES ON `todolist_db`.* TO `todolist_user`@`localhost`;
 
 -- --------------------------------------------------------
@@ -82,8 +86,8 @@ ALTER TABLE `category`
 --
 ALTER TABLE `tasks`
   ADD PRIMARY KEY (`id`),
-  ADD INDEX KEY `user_id_index` (`user_id`),
-  ADD INDEX KEY `category_id_index` (`category_id`);
+  ADD INDEX `user_id_index` (`user_id`),
+  ADD INDEX `category_id_index` (`category_id`);
 
 --
 -- Index pour la table `users`
@@ -128,3 +132,6 @@ COMMIT;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+
+-- add fake user and categories
+INSERT INTO `category`(`category`) VALUES ('personal'), ('professional');
