@@ -24,11 +24,14 @@ if(isset($_GET['target']))
         if(isset($_GET['data']) && !empty($_GET['data']))
             $data = json_decode($_GET['data']);
 
-        Router::call($target, $_GET['method'], $data);
+        Router::call($target, $_GET['method'] ?? 'GET', $data);
     } else {
         // show the error document
         // header('Content-Type: application/json');
-        echo json_encode(Router::error404($_SERVER['REQUEST_URI']), JSON_UNESCAPED_SLASHES);
+        echo json_encode(
+            Router::error404("/$tmp_target", $_GET['method'] ?? 'GET'), 
+            JSON_UNESCAPED_SLASHES
+        );
     }
 }
 

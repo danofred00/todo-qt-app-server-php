@@ -47,3 +47,12 @@ Router::delete('/task', function(int $id) {
 });
 
 // Routes for auth system
+
+Router::post('/login', function(){
+    return 'LOGIN';
+});
+
+Router::post('/signup', function(){
+    return 'SIGNUP';
+});
+

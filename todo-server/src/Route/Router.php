@@ -36,7 +36,7 @@ class Router
         array_push(Router::$routes, $_route);
     }
 
-    public static function call($route, $method, array $args = null)
+    public static function call(string $route, string $method, array $args = null)
     {
 
         foreach(Router::$routes as $_route)
@@ -45,7 +45,7 @@ class Router
             header('Content-Type: application/json');
 
             // display the view
-            if(($_route['route'] == $route) && strcasecmp($_route['method'], $method)==0)
+            if(strcasecmp($_route['route'], $route)==0 && strcasecmp($_route['method'], $method)==0)
             {
                 $action = $_route['action'];
 
@@ -57,6 +57,10 @@ class Router
                 return;
             }
         }
+
+        // when route is not found
+        // display the 404 error page
+        echo json_encode(Router::error404($route, $method), JSON_UNESCAPED_SLASHES);
     }
 
     public static function routesName()
@@ -89,10 +93,10 @@ class Router
         Router::bind($route, 'DELETE', $action);
     }
 
-    public static function error404($route) : array
+    public static function error404($route, $method) : array
     {
         return [
-            'error' => "Route $route not found",
+            'error' => "Route $route [$method] not found",
         ];
     }
 }
