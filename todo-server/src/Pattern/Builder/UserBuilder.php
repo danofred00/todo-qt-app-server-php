@@ -13,6 +13,8 @@ class UserBuilder
     private string $password = "";
     private $email_verified_at = null;
 
+    public function __construct(){ }
+
     public function withId(int $id) : UserBuilder
     {
         $this->id = $id;

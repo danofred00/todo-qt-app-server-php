@@ -51,6 +51,8 @@ Router::delete('/task', function(int $id) {
 
 Router::post('/login', function($user){
     global $auth;
+
+
     return $auth->login(User::fromMap((array) $user));
 });
 
