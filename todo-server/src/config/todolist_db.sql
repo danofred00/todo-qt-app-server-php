@@ -24,7 +24,7 @@ CREATE DATABASE IF NOT EXISTS `todolist_db`;
 USE `todolist_db` ;
 
 CREATE USER `todolist_user`@`localhost` IDENTIFIED BY "password";
-GRANT ALL PRIVILEGES ON `todolist_db.*` TO `todolist_user`@`localhost`;
+GRANT ALL PRIVILEGES ON `todolist_db`.* TO `todolist_user`@`localhost`;
 
 -- --------------------------------------------------------
 
