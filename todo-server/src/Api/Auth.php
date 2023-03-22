@@ -13,11 +13,12 @@ class Auth {
     private $db;
     private UserModel $userModel;
 
-    public static $USER_SIGNUP_SUCCED = 0;
-    public static $USER_ALREADY_EXISTS = 1;
-    public static $USER_NOT_EXISTS = 2;
-    public static $USER_LOGIN_SUCCED = 3;
-    public static $USER_LOGIN_FAILED = 4;
+    public static int $USER_SIGNUP_SUCCED = 101;
+    public static int $USER_SIGNUP_FAILED = 102;
+    public static int $USER_ALREADY_EXISTS = 103;
+    public static int $USER_NOT_EXISTS = 104;
+    public static int $USER_LOGIN_SUCCED = 105;
+    public static int $USER_LOGIN_FAILED = 106;
 
     function __construct() {
         Connection::connectDB('localhost', 'todolist_db', 'root', '');
@@ -49,6 +50,24 @@ class Auth {
             return Auth::$USER_LOGIN_SUCCED;
         else 
             return Auth::$USER_LOGIN_FAILED;
+    }
+
+    public static function auth_code_toString(int $code) : string
+    {
+        switch ($code) {
+            case Auth::$USER_ALREADY_EXISTS:
+                return 'USER_ALREADY_EXISTS';
+            case Auth::$USER_LOGIN_FAILED:
+                return 'USER_LOGIN_FAILED';
+            case Auth::$USER_LOGIN_SUCCED:
+                return 'USER_LOGIN_SUCCED';
+            case Auth::$USER_NOT_EXISTS:
+                return 'USER_NOT_EXISTS';
+            case Auth::$USER_SIGNUP_SUCCED:
+                return 'USER_SIGNUP_SUCCED';
+            default:
+                return 'UNKNOW AUTH_CODE';
+        }
     }
 
 }
