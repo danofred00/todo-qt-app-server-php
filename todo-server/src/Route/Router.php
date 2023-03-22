@@ -50,9 +50,9 @@ class Router
                 $action = $_route['action'];
 
                 if(! is_null($args))
-                    echo json_encode($action(...$args));
+                    echo Utils::json_encode($action(...$args));
                 else
-                    echo json_encode($action());
+                    echo Utils::json_encode($action());
             
                 return;
             }
@@ -60,7 +60,7 @@ class Router
 
         // when route is not found
         // display the 404 error page
-        echo json_encode(Router::error404($route, $method), JSON_UNESCAPED_SLASHES);
+        echo Utils::json_encode(Router::error404($route, $method));
     }
 
     public static function routesName()

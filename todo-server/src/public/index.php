@@ -28,9 +28,8 @@ if(isset($_GET['target']))
     } else {
         // show the error document
         // header('Content-Type: application/json');
-        echo json_encode(
-            Router::error404("/$tmp_target", $_GET['method'] ?? 'GET'), 
-            JSON_UNESCAPED_SLASHES
+        echo Utils::json_encode(
+            Router::error404("/$tmp_target", $_GET['method'] ?? 'GET')
         );
     }
 }

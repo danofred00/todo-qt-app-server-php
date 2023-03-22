@@ -11,4 +11,9 @@ final class Utils {
         echo '</pre>';
     }
 
+    public static function json_encode(mixed $value) : string
+    {
+        return json_encode($value, JSON_UNESCAPED_SLASHES);
+    }
+
 }
