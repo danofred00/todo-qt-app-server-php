@@ -2,8 +2,8 @@
 
 namespace Todolist\Api;
 
+use Todolist\Controller\UserController;
 use \Todolist\Model\User;
-use \Todolist\Model\UserModel;
 use \Todolist\Model\Category;
 use \Todolist\Model\Task;
 use \Todolist\Model\Connection;
@@ -11,7 +11,7 @@ use \Todolist\Model\Connection;
 class Auth {
 
     private $db;
-    private UserModel $userModel;
+    private UserController $userModel;
 
     public static int $USER_SIGNUP_SUCCED = 101;
     public static int $USER_SIGNUP_FAILED = 102;
@@ -21,11 +21,14 @@ class Auth {
     public static int $USER_LOGIN_FAILED = 106;
 
     function __construct() {
-        Connection::connectDB(DATABASE_HOST, DATABASE_NAME, DATABASE_USERNAME, DATABASE_PASSWORD);
+        
         $this->db = Connection::getInstance();
+        if ($this->db == NULL) {
+            die("Connection::getInstance returned a null value");
+        }
 
         // getting user model
-        $this->userModel = new UserModel($this->db);
+        $this->userModel = new UserController($this->db);
     }
 
     function get_database_connection() {
@@ -55,15 +58,15 @@ class Auth {
     public static function auth_code_toString(int $code) : string
     {
         switch ($code) {
-            case Auth::$USER_ALREADY_EXISTS:
+            case self::$USER_ALREADY_EXISTS:
                 return 'USER_ALREADY_EXISTS';
-            case Auth::$USER_LOGIN_FAILED:
+            case self::$USER_LOGIN_FAILED:
                 return 'USER_LOGIN_FAILED';
-            case Auth::$USER_LOGIN_SUCCED:
+            case self::$USER_LOGIN_SUCCED:
                 return 'USER_LOGIN_SUCCED';
-            case Auth::$USER_NOT_EXISTS:
+            case self::$USER_NOT_EXISTS:
                 return 'USER_NOT_EXISTS';
-            case Auth::$USER_SIGNUP_SUCCED:
+            case self::$USER_SIGNUP_SUCCED:
                 return 'USER_SIGNUP_SUCCED';
             default:
                 return 'UNKNOW AUTH_CODE';

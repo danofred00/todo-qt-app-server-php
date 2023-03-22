@@ -1,10 +1,13 @@
 <?php
 
-namespace Todolist\Model;
+namespace Todolist\Controller;
 
+use Todolist\Model\Task;
+use Todolist\Model\User;
+use Todolist\Model\Category;
 use Exception;
 
-class TaskModel
+class TaskController
 {
     private $db;
 
@@ -68,7 +71,7 @@ class TaskModel
         if(! $this->exists($id))
             return false;
 
-        $keys = TaskModel::format($cols);
+        $keys = self::format($cols);
         foreach ($keys as $col) {
             
             $query = "UPDATE " . DATABASE_TABLE_TASKS . " SET $col='$cols[$col]'";

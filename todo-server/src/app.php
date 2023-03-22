@@ -5,8 +5,7 @@ namespace Todolist;
 use Todolist\Api\Auth;
 use Todolist\Model\Connection;
 use Todolist\Model\Task;
-use Todolist\Model\TaskModel;
-use Todolist\Model\UserModel;
+use Todolist\Controller\TaskController;
 use Todolist\Pattern\Builder\UserBuilder;
 use Todolist\Route\Router;
 use Todolist\Utils\Utils;
@@ -14,10 +13,14 @@ use Todolist\Utils\Utils;
 require_once __DIR__ . '/../vendor/autoload.php';
 require_once __DIR__ . '/config/config.php';
 
+// initialize conenction
+Connection::connectDB(DATABASE_HOST, DATABASE_NAME, DATABASE_USERNAME, DATABASE_PASSWORD);
+
 // create models
 $auth = new Auth();
-$tasks = new TaskModel(Connection::getInstance());
+$tasks = new TaskController(Connection::getInstance());
 
+// define routes
 
 Router::get('/', function() {
     return [

@@ -1,9 +1,11 @@
 <?php
 
-namespace Todolist\Model;
+namespace Todolist\Controller;
+
+use Todolist\Model\User;
 use PDO;
 
-class UserModel {
+class UserController {
 
     private $db;
 
@@ -44,7 +46,7 @@ class UserModel {
 
     function put(int $id, array $columns) {
 
-        $keys = UserModel::format($columns);
+        $keys = self::format($columns);
         foreach($keys as $key) {
             $query = "UPDATE " . DATABASE_TABLE_USERS . " SET $key='$columns[$key]' WHERE id=$id";
             $this->db->exec($query);

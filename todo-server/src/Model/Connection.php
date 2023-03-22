@@ -5,7 +5,7 @@ namespace Todolist\Model;
 class Connection 
 {
 
-    public static $db;
+    public static $db = NULL;
 
     static function connectDB($host, $db_name, $db_user, $db_password) {
         
