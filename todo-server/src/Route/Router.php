@@ -42,7 +42,7 @@ class Router
         foreach(Router::$routes as $_route)
         {
             // change the default content-type
-            header('Content-Type: application/json');
+            // header('Content-Type: application/json');
 
             // display the view
             if(strcasecmp($_route['route'], $route)==0 && strcasecmp($_route['method'], $method)==0)

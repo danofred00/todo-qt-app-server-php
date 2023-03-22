@@ -24,6 +24,8 @@ if(isset($_GET['target']))
         if(isset($_GET['data']) && !empty($_GET['data']))
             $data = json_decode($_GET['data']);
 
+        Utils::debug($data);
+
         Router::call($target, $_GET['method'] ?? 'GET', $data);
     } else {
         // show the error document
