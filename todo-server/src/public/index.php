@@ -7,13 +7,13 @@ use Todolist\Utils\Utils;
 
 require_once __DIR__ . '/../app.php';
 
-Utils::debug($_GET);
+Utils::debug($_REQUEST);
 
 //////////////////
 $target = DEFAULT_TARGET_URL;
-if(isset($_GET['target']))
+if(isset($_REQUEST['target']))
 {
-    $tmp_target = $_GET['target'];
+    $tmp_target = $_REQUEST['target'];
 
     if(in_array('/'.$tmp_target, Router::routesName()))
     {
@@ -21,17 +21,15 @@ if(isset($_GET['target']))
         
         // decode the data
         $data = null;
-        if(isset($_GET['data']) && !empty($_GET['data']))
-            $data = json_decode($_GET['data']);
+        if(isset($_REQUEST['data']) && !empty($_REQUEST['data']))
+            $data = json_decode($_REQUEST['data']);
 
-        Utils::debug($data);
-
-        Router::call($target, $_GET['method'] ?? 'GET', $data);
+        Router::call($target, $_REQUEST['method'] ?? 'GET', $data);
     } else {
         // show the error document
         // header('Content-Type: application/json');
         echo Utils::json_encode(
-            Router::error404("/$tmp_target", $_GET['method'] ?? 'GET')
+            Router::error404("/$tmp_target", $_REQUEST['method'] ?? 'GET')
         );
     }
 }
