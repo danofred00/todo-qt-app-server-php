@@ -21,7 +21,7 @@ class Auth {
     public static int $USER_LOGIN_FAILED = 106;
 
     function __construct() {
-        Connection::connectDB('localhost', 'todolist_db', 'root', '');
+        Connection::connectDB(DATABASE_HOST, DATABASE_NAME, DATABASE_USERNAME, DATABASE_PASSWORD);
         $this->db = Connection::getInstance();
 
         // getting user model

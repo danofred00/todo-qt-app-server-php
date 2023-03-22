@@ -7,7 +7,7 @@ use Todolist\Utils\Utils;
 
 require_once __DIR__ . '/../app.php';
 
-Utils::debug($_REQUEST);
+// Utils::debug($_REQUEST);
 
 //////////////////
 $target = DEFAULT_TARGET_URL;
