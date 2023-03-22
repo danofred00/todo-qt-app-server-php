@@ -82,8 +82,8 @@ ALTER TABLE `category`
 --
 ALTER TABLE `tasks`
   ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `user_id_index` (`user_id`),
-  ADD UNIQUE KEY `category_id_index` (`category_id`);
+  ADD INDEX KEY `user_id_index` (`user_id`),
+  ADD INDEX KEY `category_id_index` (`category_id`);
 
 --
 -- Index pour la table `users`

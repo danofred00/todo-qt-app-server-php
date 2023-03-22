@@ -5,6 +5,7 @@ namespace Todolist\Public;
 use Todolist\Route\Router;
 use Todolist\Utils\Utils;
 
+
 require_once __DIR__ . '/../app.php';
 
 // Utils::debug($_REQUEST);
@@ -33,4 +34,3 @@ if(isset($_REQUEST['target']))
         );
     }
 }
-

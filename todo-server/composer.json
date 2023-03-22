@@ -10,12 +10,15 @@
             "src/"
         ],
         "psr-4": {
-            "Todolist": "src/"
+            "Todolist\\": "src/"
         }
     },
     "authors": [
         {
             "name": "Daniel Leussa"
         }
-    ]
+    ],
+    "require": {
+        "vlucas/phpdotenv": "*"
+    }
 }
