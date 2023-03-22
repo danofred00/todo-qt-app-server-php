@@ -14,6 +14,7 @@ $target = DEFAULT_TARGET_URL;
 if(isset($_GET['target']))
 {
     $tmp_target = $_GET['target'];
+
     if(in_array('/'.$tmp_target, Router::routesName()))
     {
         $target = '/'.$tmp_target;

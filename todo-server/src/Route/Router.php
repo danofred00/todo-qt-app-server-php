@@ -2,6 +2,8 @@
 
 namespace Todolist\Route;
 
+use Todolist\Utils\Utils;
+
 use function PHPUnit\Framework\assertIsCallable;
 
 class Router
@@ -36,17 +38,35 @@ class Router
 
     public static function call($route, $method, array $args = null)
     {
+
         foreach(Router::$routes as $_route)
         {
-            if(($_route['route'] == $route) && $_route['method'] == $method)
+            // change the default content-type
+            header('Content-Type: application/json');
+
+            // display the view
+            if(($_route['route'] == $route) && strcasecmp($_route['method'], $method)==0)
             {
                 $action = $_route['action'];
+
                 if(! is_null($args))
-                    echo $action(...$args);
+                    echo json_encode($action(...$args));
                 else
-                    echo $action();
+                    echo json_encode($action());
+            
+                return;
             }
         }
+    }
+
+    public static function routesName()
+    {
+        $routes = [];
+        foreach (Router::$routes as $route) {
+            array_push($routes, $route['route']);
+        }
+
+        return $routes;
     }
 
     public static function get($route, $action)
@@ -67,5 +87,12 @@ class Router
     public static function delete($route, $action)
     {
         Router::bind($route, 'DELETE', $action);
+    }
+
+    public static function error404($route) : array
+    {
+        return [
+            'error' => "Route $route not found",
+        ];
     }
 }

@@ -62,17 +62,19 @@ class TaskModel
         return Category::fromMap($stmt->fetch());
     }
 
-    public function put(int $id, $cols)
+    public function put(int $id, $cols) : bool
     {
 
         if(! $this->exists($id))
-            return;
+            return false;
 
         $keys = TaskModel::format($cols);
         foreach ($keys as $col) {
+            
             $query = "UPDATE " . DATABASE_TABLE_TASKS . " SET $col='$cols[$col]'";
             $this->db->exec($query);
         }
+        return true;
     }
 
     public function delete($id) : bool 
