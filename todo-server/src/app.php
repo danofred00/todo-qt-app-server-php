@@ -55,13 +55,31 @@ Router::post('/login', function(&$user){
     // cast the array to 
     //$user = (array) $user;
     $builder = new UserBuilder();
-
-    return $auth->login(
-        $builder->withEmail($user->email)->withPassword($user->password)->build()
+    $codeResult = $auth->login(
+        $builder->withEmail($user->email)
+                ->withPassword($user->password)
+                ->build()
     );
+    
+    return [
+        'message' => Auth::auth_code_toString($codeResult), 
+    ];
 });
 
-Router::post('/signup', function(){
-    return 'SIGNUP';
+Router::post('/signup', function(&$user){
+    global $auth;
+
+    $builder = new UserBuilder();
+    $codeResult = $auth->signup(
+        $builder->withEmail($user->email)
+                ->withFirstname($user->firstname)
+                ->withLastname($user->lastname)
+                ->withPassword($user->password)
+                ->build()
+    );
+    
+    return [
+        'message' => Auth::auth_code_toString($codeResult), 
+    ];
 });
 
