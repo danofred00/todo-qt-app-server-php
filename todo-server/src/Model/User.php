@@ -27,7 +27,7 @@ class User {
 
     }
 
-    static function fromMap(array $map) {
+    public static function fromMap(array $map) {
         return new User(
             $map['id'], 
             $map['firstname'], 

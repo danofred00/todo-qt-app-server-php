@@ -7,6 +7,7 @@ use Todolist\Model\Connection;
 use Todolist\Model\Task;
 use Todolist\Model\TaskModel;
 use Todolist\Model\UserModel;
+use Todolist\Model\User;
 use Todolist\Route\Router;
 use Todolist\Utils\Utils;
 
@@ -48,8 +49,9 @@ Router::delete('/task', function(int $id) {
 
 // Routes for auth system
 
-Router::post('/login', function(){
-    return 'LOGIN';
+Router::post('/login', function($user){
+    global $auth;
+    return $auth->login(User::fromMap((array) $user));
 });
 
 Router::post('/signup', function(){
