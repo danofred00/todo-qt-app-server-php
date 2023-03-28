@@ -7,10 +7,10 @@
     },
     "autoload": {
         "classmap": [
-            "src/"
+            "./"
         ],
         "psr-4": {
-            "Todolist\\": "src/"
+            "Todolist\\": "./"
         }
     },
     "authors": [

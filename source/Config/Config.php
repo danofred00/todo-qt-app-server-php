@@ -6,7 +6,7 @@
     use Dotenv\Dotenv;
 
     // load .env file 
-    $dotenv = Dotenv::createImmutable(__DIR__ . '/../../');
+    $dotenv = Dotenv::createImmutable(__DIR__ . '/../');
     $dotenv->load();
 
     define("DATABASE_NAME", $_ENV["DATABASE_NAME"]);
