@@ -5,7 +5,7 @@ The server to communicate with todo-qt-app client's
 
 ## Avaliables Routes
 
-- /task [GET] To get a specifief task
+- /task [GET] To get a specified task
 - /task [POST] To insert task into database
 - /task [DELETE] To delete a task
 - /task [PUT]   To update a task's properties such as title, description, etc
